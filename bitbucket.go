@@ -50,6 +50,12 @@ type repositories interface {
 	ListPublic() interface{}
 }
 
+type snippets interface {
+	ListForAccount(opt RepositoriesOptions) interface{}
+	ListForTeam(opt RepositoriesOptions) interface{}
+	ListPublic() interface{}
+}
+
 type commits interface {
 	GetCommits(opt CommitsOptions) interface{}
 	GetCommit(opt CommitsOptions) interface{}
@@ -96,6 +102,12 @@ type RepositoriesOptions struct {
 	Role  string `json:"role"` // role=[owner|admin|contributor|member]
 }
 
+type SnippetsOptions struct {
+	Owner string `json:"owner"`
+	Team  string `json:"team"`
+	Role  string `json:"role"` 
+}
+
 type RepositoryOptions struct {
 	Owner     string `json:"owner"`
 	Repo_slug string `json:"repo_slug"`
@@ -108,6 +120,15 @@ type RepositoryOptions struct {
 	Has_issues  string `json:"has_issues"`
 	Has_wiki    string `json:"has_wiki"`
 	Project     string `json:"project"`
+}
+
+type SnippetOptions struct {
+	Owner     string `json:"owner"`
+	Repo_slug string `json:"repo_slug"`
+	Scm       string `json:"scm"`
+	Is_private  string `json:"is_private"`
+	Description string `json:"description"`
+	Language    string `json:"language"`
 }
 
 type PullRequestsOptions struct {
